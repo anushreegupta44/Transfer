@@ -12,6 +12,17 @@ import javax.ws.rs.core.Response;
 public class AccountResource {
     AccountService accountService = new AccountService();
 
+    @GET
+    @Path("{accountNumber}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAccount(@PathParam("accountNumber") Integer accountNum) {
+        Account account = accountService.getAccountWithNumber(accountNum);
+        return Response
+            .status(Response.Status.OK)
+            .entity(account)
+            .build();
+    }
+
     @POST
     @Path("/transfers")
     @Consumes(MediaType.APPLICATION_JSON)

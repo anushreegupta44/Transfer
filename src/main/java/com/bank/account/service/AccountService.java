@@ -50,4 +50,11 @@ public class AccountService {
     }
 
 
+    public Account getAccountWithNumber(Integer accountNum) {
+        Account acc = accountRepository.getAccountByUUID(accountNum);
+        if (acc == null) {
+            throw new AccountNotFoundException("The account number " + accountNum + " is invalid");
+        }
+        return acc;
+    }
 }
