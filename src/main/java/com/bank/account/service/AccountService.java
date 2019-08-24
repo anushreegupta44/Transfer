@@ -1,6 +1,9 @@
 package com.bank.account.service;
 
 import com.bank.account.dto.TransferDto;
+import com.bank.account.exception.AccountNotFoundException;
+import com.bank.account.exception.InsufficientBalanceExeption;
+import com.bank.account.exception.InvalidTransferDetailsException;
 import com.bank.account.model.Account;
 import com.bank.account.repository.AccountRepository;
 
@@ -16,28 +19,17 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-//    public List<Account> getAllAccounts() {
-//    }
-
-    public Account addAccount(Account acc) {
-        return acc;
-    }
-
-//    public Account getAccount(UUID accountNumber) {
-//        return accounts.get(accountNumber);
-//    }
-
     public Boolean transfer(TransferDto transferDto) {
         Account from = accountRepository.getAccountByUUID(transferDto.getFromAccNum());
         if (from == null) {
-//            throw AccountNotFoundException();
+            throw new AccountNotFoundException("Account with number " + transferDto.getFromAccNum() + " not found");
         }
         Account to = accountRepository.getAccountByUUID(transferDto.getToAccNum());
         if (to == null) {
-//            throw AccountNotFoundException();
+            throw new AccountNotFoundException("Account with number " + transferDto.getToAccNum() + " not found");
         }
-        if (from == to) {
-//            throw
+        if (from.getAccountNumber().equals(to.getAccountNumber())) {
+            throw new InvalidTransferDetailsException("You cannot transfer money to your own account");
         }
         transfer(from, to, transferDto.getAmount());
         accountRepository.saveTransfer(from, to);
@@ -49,7 +41,7 @@ public class AccountService {
         if (from.getBalance().compareTo(amount) == 1 || from.getBalance().compareTo(amount) == 0) {
             fromNewBal = from.getBalance().subtract(amount);
         } else {
-//            throw
+            throw new InsufficientBalanceExeption("The account you're transferring money from has insufficient balance");
         }
         from.setBalance(fromNewBal);
         BigDecimal toNewBal = to.getBalance().add(amount);
