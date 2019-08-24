@@ -4,13 +4,22 @@ import com.bank.account.dto.TransferDto;
 import com.bank.account.model.Account;
 import com.bank.account.service.AccountService;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("accounts")
 public class AccountResource {
-    AccountService accountService = new AccountService();
+    AccountService accountService;
+
+    public AccountResource() {
+    }
+
+    @Inject
+    public AccountResource(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
     @GET
     @Path("{accountNumber}")

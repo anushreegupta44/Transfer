@@ -7,14 +7,16 @@ import com.bank.account.exception.InvalidTransferDetailsException;
 import com.bank.account.model.Account;
 import com.bank.account.repository.AccountRepository;
 
+import javax.inject.Inject;
 import java.math.BigDecimal;
 
 public class AccountService {
-    AccountRepository accountRepository = new AccountRepository();
+    AccountRepository accountRepository;
 
     public AccountService() {
     }
 
+    @Inject
     public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
