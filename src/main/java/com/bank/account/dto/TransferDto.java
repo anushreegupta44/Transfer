@@ -1,29 +1,28 @@
 package com.bank.account.dto;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 public class TransferDto {
-    private UUID fromAccNum;
-    private UUID toAccNum;
+    private Integer fromAccNum;
+    private Integer toAccNum;
     private BigDecimal amount;
 
     public TransferDto() {
     }
 
-    public UUID getFromAccNum() {
+    public Integer getFromAccNum() {
         return fromAccNum;
     }
 
-    public void setFromAccNum(UUID fromAccNum) {
+    public void setFromAccNum(Integer fromAccNum) {
         this.fromAccNum = fromAccNum;
     }
 
-    public UUID getToAccNum() {
+    public Integer getToAccNum() {
         return toAccNum;
     }
 
-    public void setToAccNum(UUID toAccNum) {
+    public void setToAccNum(Integer toAccNum) {
         this.toAccNum = toAccNum;
     }
 

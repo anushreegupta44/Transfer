@@ -2,26 +2,25 @@ package com.bank.account.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @XmlRootElement
 public class Account {
-    private UUID accountNumber;
+    private Integer accountNumber;
     private BigDecimal balance;
 
     public Account() {
     }
 
-    public Account(UUID accountNumber, BigDecimal balance) {
+    public Account(Integer accountNumber, BigDecimal balance) {
         this.accountNumber = accountNumber;
         this.balance = balance;
     }
 
-    public UUID getAccountNumber() {
+    public Integer getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(UUID accountNumber) {
+    public void setAccountNumber(Integer accountNumber) {
         this.accountNumber = accountNumber;
     }
 
