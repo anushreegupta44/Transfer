@@ -10,6 +10,12 @@ public class TransferDto {
     public TransferDto() {
     }
 
+    public TransferDto(Integer fromAccNum, Integer toAccNum, BigDecimal amount) {
+        this.fromAccNum = fromAccNum;
+        this.toAccNum = toAccNum;
+        this.amount = amount;
+    }
+
     public Integer getFromAccNum() {
         return fromAccNum;
     }
