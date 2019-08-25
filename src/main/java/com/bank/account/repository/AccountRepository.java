@@ -39,25 +39,6 @@ public class AccountRepository {
         return account;
     }
 
-    public Account saveAccount(Account account) {
-        PreparedStatement statement = null;
-        try {
-            statement = Database.getConnection().prepareStatement("UPDATE ACCOUNT SET BALANCE = ? WHERE ACCOUNT_NUMBER = ?");
-            statement.setBigDecimal(1, account.getBalance());
-            statement.setInt(2, account.getAccountNumber());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ResultSet rs = null;
-        try {
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return account;
-
-    }
-
     public void saveTransfer(Account from, Account to) {
         Connection con = null;
         con = Database.getConnection();
